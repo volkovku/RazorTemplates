@@ -8,7 +8,7 @@ Get Started
 
 This is very easy to use RazorTemplates:
 
-'''csharp
+```csharp
 using System;
 using RazorTemplates.Core;
 
@@ -23,6 +23,6 @@ namespace TestApplication
         }
     }
 }
-'''
+```
 
 
