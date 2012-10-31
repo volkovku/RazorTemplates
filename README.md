@@ -3,8 +3,14 @@ RazorTemplates
 
 Open source templating engine based on Microsoft's Razor parsing engine. Thread safe. Allows run Razor templates outside ASP.Net MVC Projects. 
 
-Get Started
-===========
+## Install ##
+
+To install RazorTemplates, run the following command in the [Package Manager Console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console)
+```
+PM> Install-Package RazorTemplates
+```
+
+## Get Started ##
 
 This is very easy to use RazorTemplates:
 
