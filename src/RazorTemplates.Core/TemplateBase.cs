@@ -2,18 +2,23 @@
 
 namespace RazorTemplates.Core
 {
+    /// <summary>
+    /// Represents a base class for generated templates.
+    /// </summary>
     public abstract class TemplateBase
     {
         private readonly StringBuilder _buffer = new StringBuilder();
 
-        public dynamic Model
-        {
-            get;
-            set;
-        }
+        /// <summary>
+        /// Gets or sets dynamic model which data should be rendered.
+        /// </summary>
+        public dynamic Model { get; set; }
 
         #region Execute
 
+        /// <summary>
+        /// Renders specified model.
+        /// </summary>
         public virtual string Render(object model)
         {
             Model = model;
@@ -23,6 +28,13 @@ namespace RazorTemplates.Core
             return _buffer.ToString();
         }
 
+        /// <summary>
+        /// A method which implemets by Razor engine.
+        /// Produces sequance like:
+        ///     WriteLiteral("Hello ");
+        ///     Write(Model.Name);
+        ///     WriteLiteral("!");
+        /// </summary>
         public abstract void Execute();
 
         #endregion

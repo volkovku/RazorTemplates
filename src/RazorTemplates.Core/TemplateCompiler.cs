@@ -26,7 +26,7 @@ namespace RazorTemplates.Core
 
         public static bool Debug { get; set; }
 
-        public static Type Compile(Type templateType, string templateBody, IEnumerable<string> namespaces)
+        public static Type Compile(Type templateType, string templateBody, IEnumerable<string> namespaces, string tempDirectory)
         {
             string className;
             var compileUnit = GetCodeCompileUnit(templateType, namespaces, templateBody, out className);
@@ -43,7 +43,8 @@ namespace RazorTemplates.Core
                 }
             }
 
-            var compileResult = codeProvider.CompileAssemblyFromDom(CreateComplilerParameters(), compileUnit);
+            var parameters = CreateComplilerParameters(tempDirectory);
+            var compileResult = codeProvider.CompileAssemblyFromDom(parameters, compileUnit);
             if (compileResult.Errors != null && compileResult.Errors.Count > 0)
                 throw new TemplateCompilationException(compileResult.Errors, sourceCode, templateBody);
 
@@ -52,7 +53,7 @@ namespace RazorTemplates.Core
 
         }
 
-        private static CompilerParameters CreateComplilerParameters()
+        private static CompilerParameters CreateComplilerParameters(string tempDirectory)
         {
             var parameters = new CompilerParameters
             {
@@ -62,18 +63,27 @@ namespace RazorTemplates.Core
                 CompilerOptions = "/target:library /optimize",
             };
 
-            var tempFolder = Environment.GetEnvironmentVariable("TEMP");
-            if (!string.IsNullOrEmpty(tempFolder))
-            {
-                tempFolder = Path.Combine(tempFolder, Guid.NewGuid().ToString("N"));
-                if (!Directory.Exists(tempFolder)) Directory.CreateDirectory(tempFolder);
+            tempDirectory = string.IsNullOrWhiteSpace(tempDirectory)
+                ? GetTempDirectoryFromEnvironment()
+                : tempDirectory;
 
-                parameters.TempFiles = new TempFileCollection(tempFolder);
+            if (!string.IsNullOrWhiteSpace(tempDirectory))
+            {
+                tempDirectory = Path.Combine(tempDirectory, Guid.NewGuid().ToString("N"));
+                if (!Directory.Exists(tempDirectory)) Directory.CreateDirectory(tempDirectory);
+
+                parameters.TempFiles = new TempFileCollection(tempDirectory, false);
             }
 
             parameters.ReferencedAssemblies.AddRange(GetLoadedAssemblies());
 
             return parameters;
+        }
+
+        private static string GetTempDirectoryFromEnvironment()
+        {
+            var tempDirectory = Environment.GetEnvironmentVariable("TEMP");
+            return !string.IsNullOrEmpty(tempDirectory) ? tempDirectory : Path.GetTempPath();
         }
 
         private static string[] GetLoadedAssemblies()

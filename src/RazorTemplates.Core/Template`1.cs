@@ -16,11 +16,6 @@ namespace RazorTemplates.Core
             _initializer = initializer;
         }
 
-        /// <summary>
-        /// Renders templates with data from specified model.
-        /// </summary>
-        /// <param name="model">A model data.</param>
-        /// <returns>A rendered content.</returns>
         public string Render(object model = null)
         {
             var instance = (T)Activator.CreateInstance(_templateType);

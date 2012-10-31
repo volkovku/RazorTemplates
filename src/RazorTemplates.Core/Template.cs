@@ -31,7 +31,8 @@ namespace RazorTemplates.Core
             var templateType = TemplateCompiler.Compile(
                 typeof(TemplateBase),
                 source,
-                Enumerable.Empty<string>());
+                Enumerable.Empty<string>() /* namespaces */,
+                null /* compilation directory */);
 
             return new Template<TemplateBase>(templateType, null);
         }
