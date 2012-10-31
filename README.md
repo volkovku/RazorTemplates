@@ -25,4 +25,35 @@ namespace TestApplication
 }
 ```
 
+You can extend templates by including required namespaces:
 
+```csharp
+using System;
+using RazorTemplates.Core;
+
+namespace TestApplication
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var template = Template
+                .WithBaseType<TemplateBase>()
+                .AddNamespace("TestApplication")
+                .Compile(@"There is @Model.Apples @Plural.Form(Model.Apples, new [] { ""apple"", ""apples"" }) in the box.");
+
+            Console.WriteLine(template.Render(new { Apples = 1 }));
+            Console.WriteLine(template.Render(new { Apples = 2 }));
+        }
+    }
+
+    public static class Plural
+    {
+        public static string Form(int value, string[] forms)
+        {
+            var form = value == 1 ? 0 : 1;
+            return forms[form];
+        }
+    }
+}
+```
