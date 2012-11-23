@@ -28,6 +28,9 @@ namespace RazorTemplates.Core
 
         private static ExpandoObject CreateExpandoObject(object anonymousObject)
         {
+            var expandoObject = anonymousObject as ExpandoObject;
+            if (expandoObject != null) return expandoObject;
+
             var anonymousDictionary = new Dictionary<string, object>();
             if (anonymousObject != null)
                 foreach (PropertyDescriptor property in TypeDescriptor.GetProperties(anonymousObject))
