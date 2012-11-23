@@ -1,7 +1,7 @@
 RazorTemplates
 ==============
 
-Open source templating engine based on Microsoft's Razor parsing engine. Thread safe. Allows run Razor templates outside ASP.Net MVC Projects. 
+Open source templating engine based on Microsoft's Razor parsing engine. Thread safe. Allows run Razor templates outside ASP.NET MVC Projects. 
 
 ## Install ##
 
@@ -12,24 +12,16 @@ PM> Install-Package RazorTemplates
 
 ## Get Started ##
 
-This is very easy to use RazorTemplates:
+Using the library is as simple as two lines of code:
 
 ```csharp
-using System;
 using RazorTemplates.Core;
 
-namespace TestApplication
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            var template = Template.Compile("Hello @Model.Name!");
-            Console.WriteLine(template.Render(new { Name = "World" }));
-        }
-    }
-}
+var template = Template.Compile("Hello @Model.Name!");
+Console.WriteLine(template.Render(new { Name = "World" }));
 ```
+
+## Extending with custom methods ##
 
 You can extend templates by including required namespaces:
 
@@ -46,7 +38,7 @@ namespace TestApplication
             var template = Template
                 .WithBaseType<TemplateBase>()
                 .AddNamespace("TestApplication")
-                .Compile(@"There is @Model.Apples @Plural.Form(Model.Apples, new [] { ""apple"", ""apples"" }) in the box.");
+                .Compile(@"@Model.Apples @Plural.Form(Model.Apples, new [] { ""apple"", ""apples"" }) in the box.");
 
             Console.WriteLine(template.Render(new { Apples = 1 }));
             Console.WriteLine(template.Render(new { Apples = 2 }));
