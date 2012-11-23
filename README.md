@@ -1,7 +1,7 @@
 RazorTemplates
 ==============
 
-Open source templating engine based on Microsoft's Razor parsing engine. Thread safe. Allows run Razor templates outside ASP.NET MVC Projects. 
+Open source templating engine based on Microsoft's Razor parsing engine. Thread safe. Allows to run Razor templates outside of ASP.NET projects.
 
 ## Install ##
 
