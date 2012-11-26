@@ -22,12 +22,15 @@ namespace RazorTemplates.Core
             "System.Linq"
         };
 
+        private static volatile bool _runtimeBinderLoaded = false;
         private static int _templateNumber;
 
         public static bool Debug { get; set; }
 
         public static Type Compile(Type templateType, string templateBody, IEnumerable<string> namespaces, string tempDirectory)
         {
+            LoadRuntimeBinder();
+
             string className;
             var compileUnit = GetCodeCompileUnit(templateType, namespaces, templateBody, out className);
 
@@ -91,7 +94,8 @@ namespace RazorTemplates.Core
             return AppDomain.CurrentDomain
                 .GetAssemblies()
                 .Where(a => !a.IsDynamic)
-                .GroupBy(a => a.FullName).Select(grp => grp.First())
+                .GroupBy(a => a.FullName)
+                .Select(grp => grp.First())
                 .Select(a => a.Location)
                 .ToArray();
         }
@@ -127,6 +131,19 @@ namespace RazorTemplates.Core
         {
             var number = Interlocked.Increment(ref _templateNumber);
             return number.ToString(CultureInfo.InvariantCulture);
+        }
+
+        private static void LoadRuntimeBinder()
+        {
+            if (_runtimeBinderLoaded) return;
+
+            var binderType = typeof(Microsoft.CSharp.RuntimeBinder.Binder);
+            var binderAssemblyName = binderType.Assembly.FullName;
+            if (string.IsNullOrEmpty(binderAssemblyName)) 
+                throw new InvalidOperationException(
+                    "Could not load 'Microsoft.CSharp.RuntimeBinder.Binder' assembly.");
+
+            _runtimeBinderLoaded = true;
         }
     }
 }
