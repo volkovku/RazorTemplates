@@ -2,6 +2,7 @@
 using System.CodeDom;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -24,11 +25,18 @@ namespace RazorTemplates.Core
 
         private static volatile bool _runtimeBinderLoaded = false;
         private static int _templateNumber;
+        private static ConcurrentDictionary<int, Type> _cachedTemplates = new ConcurrentDictionary<int, Type>();
 
         public static bool Debug { get; set; }
 
         public static Type Compile(Type templateType, string templateBody, IEnumerable<string> namespaces, string tempDirectory)
         {
+            Type cachedType;
+            _cachedTemplates.TryGetValue(templateBody.GetHashCode() + templateType.GetHashCode(), out cachedType);
+            
+            if (cachedType != null)
+                return cachedType;
+            
             LoadRuntimeBinder();
 
             string className;
@@ -52,8 +60,11 @@ namespace RazorTemplates.Core
                 throw new TemplateCompilationException(compileResult.Errors, sourceCode, templateBody);
 
             var fullClassName = TEMPLATES_NAMESPACE + "." + className;
-            return compileResult.CompiledAssembly.GetType(fullClassName);
-
+            
+            var returnType = compileResult.CompiledAssembly.GetType(fullClassName);
+            _cachedTemplates.TryAdd(templateBody.GetHashCode() + templateType.GetHashCode(), returnType);
+            
+            return returnType;
         }
 
         private static CompilerParameters CreateComplilerParameters(string tempDirectory)
