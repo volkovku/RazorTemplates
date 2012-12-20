@@ -52,11 +52,11 @@ namespace RazorTemplates.Core
         /// </summary>
         public ITemplate Compile(string source)
         {
-            var templateType = TemplateCompiler.Compile(
+            var compilationResult = TemplateCompiler.Compile(
                 typeof(T), source, _namespaces,
                 CompilationDirectory);
 
-            return new Template<T>(templateType, _templateInitializer);
+            return new Template<T>(compilationResult.Type, compilationResult.SourceCode, _templateInitializer);
         }
     }
 }

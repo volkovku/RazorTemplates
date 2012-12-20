@@ -28,13 +28,13 @@ namespace RazorTemplates.Core
                     "Template source can't be null or empty string.",
                     "source");
 
-            var templateType = TemplateCompiler.Compile(
+            var compilationResult = TemplateCompiler.Compile(
                 typeof(TemplateBase),
                 source,
                 Enumerable.Empty<string>() /* namespaces */,
                 null /* compilation directory */);
 
-            return new Template<TemplateBase>(templateType, null);
+            return new Template<TemplateBase>(compilationResult.Type, compilationResult.SourceCode, null);
         }
 
         /// <summary>

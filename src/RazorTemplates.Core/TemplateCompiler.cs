@@ -15,6 +15,7 @@ namespace RazorTemplates.Core
     internal static class TemplateCompiler
     {
         private const string TEMPLATES_NAMESPACE = "RazorTemplates";
+
         private static readonly string[] _defaultNamespaces = new[]
         {
             "System",
@@ -22,28 +23,26 @@ namespace RazorTemplates.Core
             "System.Linq"
         };
 
-        private static volatile bool _runtimeBinderLoaded = false;
+        private static volatile bool _runtimeBinderLoaded;
         private static int _templateNumber;
 
         public static bool Debug { get; set; }
 
-        public static Type Compile(Type templateType, string templateBody, IEnumerable<string> namespaces, string tempDirectory)
+        public static TemplateCompilationResult Compile(Type templateType, string templateBody, IEnumerable<string> namespaces, string tempDirectory)
         {
             LoadRuntimeBinder();
 
             string className;
             var compileUnit = GetCodeCompileUnit(templateType, namespaces, templateBody, out className);
 
+            string sourceCode;
             var codeProvider = new CSharpCodeProvider();
-            var sourceCode = string.Empty;
-            if (Debug)
+            var builder = new StringBuilder();
+
+            using (var writer = new StringWriter(builder, CultureInfo.InvariantCulture))
             {
-                var builder = new StringBuilder();
-                using (var writer = new StringWriter(builder, CultureInfo.InvariantCulture))
-                {
-                    codeProvider.GenerateCodeFromCompileUnit(compileUnit, writer, new CodeGeneratorOptions());
-                    sourceCode = builder.ToString();
-                }
+                codeProvider.GenerateCodeFromCompileUnit(compileUnit, writer, new CodeGeneratorOptions());
+                sourceCode = builder.ToString();
             }
 
             var parameters = CreateComplilerParameters(tempDirectory);
@@ -52,8 +51,12 @@ namespace RazorTemplates.Core
                 throw new TemplateCompilationException(compileResult.Errors, sourceCode, templateBody);
 
             var fullClassName = TEMPLATES_NAMESPACE + "." + className;
-            return compileResult.CompiledAssembly.GetType(fullClassName);
 
+            return new TemplateCompilationResult
+            {
+                Type = compileResult.CompiledAssembly.GetType(fullClassName),
+                SourceCode = sourceCode
+            };
         }
 
         private static CompilerParameters CreateComplilerParameters(string tempDirectory)

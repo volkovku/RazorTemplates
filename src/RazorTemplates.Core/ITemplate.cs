@@ -6,6 +6,11 @@
     public interface ITemplate
     {
         /// <summary>
+        /// Returns generated source code for this template.
+        /// </summary>
+        string SourceCode { get; }
+
+        /// <summary>
         /// Renders templates with data from specified model.
         /// </summary>
         /// <param name="model">A model data.</param>

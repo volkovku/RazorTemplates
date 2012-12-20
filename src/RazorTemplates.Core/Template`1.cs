@@ -9,11 +9,18 @@ namespace RazorTemplates.Core
     {
         private readonly Type _templateType;
         private readonly Action<T> _initializer;
+        private readonly string _sourceCode;
 
-        internal Template(Type templateType, Action<T> initializer)
+        internal Template(Type templateType, string sourceCode, Action<T> initializer)
         {
             _templateType = templateType;
+            _sourceCode = sourceCode;
             _initializer = initializer;
+        }
+
+        public string SourceCode
+        {
+            get { return _sourceCode; }
         }
 
         public string Render(object model = null)
