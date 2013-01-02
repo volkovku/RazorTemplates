@@ -44,5 +44,11 @@ namespace RazorTemplates.Core
         {
             return new TemplateDescription<T>(inializer);
         }
+
+        public static TemplateDescription<TemplateBase<TModel>, TModel> WithModel<TModel>(Action<TemplateBase<TModel>> inializer = null)
+        {
+            return new TemplateDescription<TemplateBase<TModel>, TModel>(inializer);
+
+        }
     }
 }

@@ -23,5 +23,20 @@ namespace RazorTemplates.Tests
 
             Assert.AreEqual("There is 2 apples in the box.", template.Render(expando));
         }
+
+        [TestMethod]
+        public void ItShouldUseTheTypedModel()
+        {
+            var templateDescription = Template.WithModel<TestModel>();
+            var template = templateDescription.Compile("@Model.Message");
+            var model = new TestModel {Message = "Hello world"};
+            var render = template.Render(model);
+            Assert.AreEqual(render, model.Message);
+        }
+
+        public class TestModel
+        {
+            public string Message { get; set; }
+        }
     }
 }

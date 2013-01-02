@@ -49,4 +49,11 @@ namespace RazorTemplates.Core
             return (ExpandoObject)expando;
         }
     }
+
+    internal class Template<T, TModel> : Template<T>, ITemplate<TModel> where T : TemplateBase
+    {
+        internal Template(Type templateType, string sourceCode, Action<T> initializer) : base(templateType, sourceCode, initializer)
+        {
+        }
+    }
 }

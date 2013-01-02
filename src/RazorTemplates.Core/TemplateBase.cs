@@ -62,4 +62,9 @@ namespace RazorTemplates.Core
 
         #endregion
     }
+
+    public abstract class TemplateBase<TModel> : TemplateBase
+    {
+        public new TModel Model { get; set; }
+    }
 }

@@ -17,4 +17,6 @@
         /// <returns>A rendered content.</returns>
         string Render(object model = null);
     }
+
+    public interface ITemplate<TModel> : ITemplate {}
 }

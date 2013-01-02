@@ -6,10 +6,10 @@ namespace RazorTemplates.Core
     /// <summary>
     /// Represents a description of new Razor template type.
     /// </summary>
-    public sealed class TemplateDescription<T> where T : TemplateBase
+    public class TemplateDescription<T> where T : TemplateBase
     {
         private readonly HashSet<string> _namespaces = new HashSet<string>();
-        private readonly Action<T> _templateInitializer;
+        protected readonly Action<T> _templateInitializer;
 
         /// <summary>
         /// Initializes a new instance of TemplateDescription class.
@@ -52,11 +52,29 @@ namespace RazorTemplates.Core
         /// </summary>
         public ITemplate Compile(string source)
         {
-            var compilationResult = TemplateCompiler.Compile(
-                typeof(T), source, _namespaces,
-                CompilationDirectory);
+            var compilationResult = InternalCompile(source);
 
             return new Template<T>(compilationResult.Type, compilationResult.SourceCode, _templateInitializer);
+        }
+
+        protected TemplateCompilationResult InternalCompile(string source)
+        {
+            var compilationResult = TemplateCompiler.Compile(typeof(T), source, _namespaces, CompilationDirectory);
+            return compilationResult;
+        }
+    }
+
+    public class TemplateDescription<T, TModel> : TemplateDescription<T> where T : TemplateBase
+    {
+        internal TemplateDescription(Action<T> templateInitializer) : base(templateInitializer)
+        {
+        }
+
+        public new ITemplate<TModel> Compile(string source)
+        {
+            var compilationResult = InternalCompile(source);
+
+            return new Template<T, TModel>(compilationResult.Type, compilationResult.SourceCode, _templateInitializer);
         }
     }
 }
