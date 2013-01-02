@@ -66,5 +66,11 @@ namespace RazorTemplates.Core
     public abstract class TemplateBase<TModel> : TemplateBase
     {
         public new TModel Model { get; set; }
+
+        public override string Render(object model)
+        {
+            Model = (TModel)model;
+            return base.Render(model);
+        }
     }
 }

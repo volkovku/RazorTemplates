@@ -18,5 +18,8 @@
         string Render(object model = null);
     }
 
-    public interface ITemplate<TModel> : ITemplate {}
+    public interface ITemplate<in TModel> : ITemplate
+    {
+        string Render(TModel model);
+    }
 }
