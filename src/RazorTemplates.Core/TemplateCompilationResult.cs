@@ -2,7 +2,7 @@
 
 namespace RazorTemplates.Core
 {
-    internal struct TemplateCompilationResult
+    public struct TemplateCompilationResult
     {
         public Type Type;
         public string SourceCode;

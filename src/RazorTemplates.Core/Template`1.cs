@@ -25,12 +25,17 @@ namespace RazorTemplates.Core
 
         public string Render(object model = null)
         {
+            var template = CreateTemplateInstance();
+            return template.Render(CreateExpandoObject(model));
+        }
+
+        protected T CreateTemplateInstance()
+        {
             var instance = (T)Activator.CreateInstance(_templateType);
 
             if (_initializer != null)
                 _initializer(instance);
-
-            return instance.Render(CreateExpandoObject(model));
+            return instance;
         }
 
         private static ExpandoObject CreateExpandoObject(object anonymousObject)
@@ -47,6 +52,20 @@ namespace RazorTemplates.Core
             foreach (var item in anonymousDictionary) expando.Add(item);
 
             return (ExpandoObject)expando;
+        }
+    }
+
+    internal class Template<T, TModel> : Template<T>, ITemplate<TModel> where T : TemplateBase
+    {
+        internal Template(Type templateType, string sourceCode, Action<T> initializer) : base(templateType, sourceCode, initializer)
+        {
+        }
+
+
+        public string Render(TModel model)
+        {
+            var instance = CreateTemplateInstance();
+            return instance.Render(model);
         }
     }
 }
