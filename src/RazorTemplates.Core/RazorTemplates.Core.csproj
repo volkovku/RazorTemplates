@@ -50,11 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ITemplate.cs" />
+    <Compile Include="ITemplate`1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TemplateBase`1.cs" />
     <Compile Include="TemplateCompilationResult.cs" />
     <Compile Include="Template`1.cs" />
-    <Compile Include="TemplateDescription.cs" />
+    <Compile Include="TemplateDescription`2.cs" />
     <Compile Include="TemplateCompiler.cs" />
     <Compile Include="Template.cs" />
     <Compile Include="TemplateBase.cs" />

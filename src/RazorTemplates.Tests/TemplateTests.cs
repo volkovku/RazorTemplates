@@ -40,11 +40,10 @@ namespace RazorTemplates.Tests
         [TestMethod]
         public void ItShouldUseTheTypedModel()
         {
-            var templateDescription = Template.WithModel<TestModel>();
             var templateStream = Assembly.GetExecutingAssembly()
                                          .GetManifestResourceStream("RazorTemplates.Tests.Template.cshtml");
             var templateContent = new StreamReader(templateStream).ReadToEnd();
-            var template = templateDescription.Compile(templateContent);
+            var template = Template.Compile<TestModel>(templateContent);
             var model = new TestModel
                 {
                     Message = "Hello world"

@@ -21,7 +21,7 @@ namespace RazorTemplates.Core
         /// <summary>
         /// Returns template created from specified source.
         /// </summary>
-        public static ITemplate Compile(string source)
+        public static ITemplate<dynamic> Compile(string source)
         {
             if (string.IsNullOrEmpty(source))
                 throw new ArgumentException(
@@ -34,7 +34,26 @@ namespace RazorTemplates.Core
                 Enumerable.Empty<string>() /* namespaces */,
                 null /* compilation directory */);
 
-            return new Template<TemplateBase>(compilationResult.Type, compilationResult.SourceCode, null);
+            return new Template<TemplateBase, object>(compilationResult.Type, compilationResult.SourceCode, null);
+        }
+
+        /// <summary>
+        /// Returns strong typed template created from specified source.
+        /// </summary>
+        public static ITemplate<TModel> Compile<TModel>(string source)
+        {
+            if (string.IsNullOrEmpty(source))
+                throw new ArgumentException(
+                    "Template source can't be null or empty string.",
+                    "source");
+
+            var compilationResult = TemplateCompiler.Compile(
+                typeof (TemplateBase<TModel>),
+                source,
+                Enumerable.Empty<string>() /* namespaces */,
+                null /* compilation directory */);
+
+            return new Template<TemplateBase<TModel>, TModel>(compilationResult.Type, compilationResult.SourceCode, null);
         }
 
         /// <summary>
@@ -43,12 +62,6 @@ namespace RazorTemplates.Core
         public static TemplateDescription<T> WithBaseType<T>(Action<T> inializer = null) where T : TemplateBase
         {
             return new TemplateDescription<T>(inializer);
-        }
-
-        public static TemplateDescription<TemplateBase<TModel>, TModel> WithModel<TModel>(Action<TemplateBase<TModel>> inializer = null)
-        {
-            return new TemplateDescription<TemplateBase<TModel>, TModel>(inializer);
-
         }
     }
 }

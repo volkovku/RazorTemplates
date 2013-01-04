@@ -5,7 +5,7 @@ using System.Dynamic;
 
 namespace RazorTemplates.Core
 {
-    internal class Template<T> : ITemplate where T : TemplateBase
+    internal class Template<T, TModel> : ITemplate<TModel> where T : TemplateBase
     {
         private readonly Type _templateType;
         private readonly Action<T> _initializer;
@@ -23,10 +23,15 @@ namespace RazorTemplates.Core
             get { return _sourceCode; }
         }
 
-        public string Render(object model = null)
+        public string Render(TModel model)
         {
             var template = CreateTemplateInstance();
-            return template.Render(CreateExpandoObject(model));
+
+            if (!ReferenceEquals(null, model)
+                && model.GetType().Name.StartsWith("<>f__AnonymousType"))
+                return template.Render(CreateExpandoObject(model));
+
+            return template.Render(model);
         }
 
         protected T CreateTemplateInstance()
@@ -52,20 +57,6 @@ namespace RazorTemplates.Core
             foreach (var item in anonymousDictionary) expando.Add(item);
 
             return (ExpandoObject)expando;
-        }
-    }
-
-    internal class Template<T, TModel> : Template<T>, ITemplate<TModel> where T : TemplateBase
-    {
-        internal Template(Type templateType, string sourceCode, Action<T> initializer) : base(templateType, sourceCode, initializer)
-        {
-        }
-
-
-        public string Render(TModel model)
-        {
-            var instance = CreateTemplateInstance();
-            return instance.Render(model);
         }
     }
 }
