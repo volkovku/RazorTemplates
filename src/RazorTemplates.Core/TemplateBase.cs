@@ -12,9 +12,7 @@ namespace RazorTemplates.Core
         /// <summary>
         /// Gets or sets dynamic model which data should be rendered.
         /// </summary>
-        public dynamic Model { get; set; }
-
-        #region Execute
+        public virtual dynamic Model { get; set; }
 
         /// <summary>
         /// Renders specified model.
@@ -22,9 +20,7 @@ namespace RazorTemplates.Core
         public virtual string Render(object model)
         {
             Model = model;
-
             Execute();
-
             return _buffer.ToString();
         }
 
@@ -37,29 +33,28 @@ namespace RazorTemplates.Core
         /// </summary>
         public abstract void Execute();
 
-        #endregion
-
-        #region Write
-
+        /// <summary>
+        /// Writes a string.
+        /// </summary>
         protected void Write(string value)
         {
             _buffer.Append(value);
         }
 
+        /// <summary>
+        /// Writes a string representation of specified object.
+        /// </summary>
         protected void Write(object value)
         {
             _buffer.Append(value);
         }
 
-        #endregion
-
-        #region WriteLiteral
-
+        /// <summary>
+        /// Writes specified string.
+        /// </summary>
         protected void WriteLiteral(string value)
         {
             _buffer.Append(value);
         }
-
-        #endregion
     }
 }

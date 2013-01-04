@@ -28,7 +28,7 @@ namespace RazorTemplates.Core
 
         public static bool Debug { get; set; }
 
-        public static TemplateCompilationResult Compile(Type templateType, string templateBody, IEnumerable<string> namespaces, string tempDirectory)
+        internal static TemplateCompilationResult Compile(Type templateType, string templateBody, IEnumerable<string> namespaces, string tempDirectory)
         {
             LoadRuntimeBinder();
 

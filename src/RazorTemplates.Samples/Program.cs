@@ -5,7 +5,7 @@ namespace RazorTemplates.Samples
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             SimpleTemplate();
             TemplateWithCustomNamespaces();
