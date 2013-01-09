@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using RazorTemplates.Core.Infrastructure;
 
 namespace RazorTemplates.Core
 {
@@ -55,6 +56,35 @@ namespace RazorTemplates.Core
         protected void WriteLiteral(string value)
         {
             _buffer.Append(value);
+        }
+
+        /// <summary>
+        /// Razor 2.0
+        /// Writes attribute in situations like &lt;img src="@Model"&gt;.
+        /// </summary>
+        protected void WriteAttribute(
+            string attribute,
+            PositionTagged<string> prefix,
+            PositionTagged<string> suffix,
+            params AttributeValue[] values)
+        {
+            _buffer.Append(prefix.Value);
+
+            if (values != null)
+            {
+                foreach (var attributeValue in values)
+                {
+                    _buffer.Append(attributeValue.Prefix.Value);
+
+                    var value = attributeValue.Value.Value;
+                    if (value != null)
+                    {
+                        _buffer.Append(value);
+                    }
+                }
+            }
+
+            _buffer.Append(suffix.Value);
         }
     }
 }

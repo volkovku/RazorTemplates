@@ -50,6 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\AttributeValue.cs" />
+    <Compile Include="Infrastructure\PositionTagged.cs" />
     <Compile Include="ITemplate`1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TemplateBase`1.cs" />
