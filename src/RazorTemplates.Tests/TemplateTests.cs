@@ -34,20 +34,17 @@ namespace RazorTemplates.Tests
 
             Assert.AreEqual("There is 1 apple in the box.", template.Render(obj));
         }
-
-  
-
+    
         [TestMethod]
         public void ItShouldUseTheTypedModel()
         {
-            var templateStream = Assembly.GetExecutingAssembly()
-                                         .GetManifestResourceStream("RazorTemplates.Tests.Template.cshtml");
+            var templateStream = Assembly
+                .GetExecutingAssembly()
+                .GetManifestResourceStream("RazorTemplates.Tests.Template.cshtml");
+
             var templateContent = new StreamReader(templateStream).ReadToEnd();
             var template = Template.Compile<TestModel>(templateContent);
-            var model = new TestModel
-                {
-                    Message = "Hello world"
-                };
+            var model = new TestModel { Message = "Hello world" };
 
             var render = template.Render(model);
 

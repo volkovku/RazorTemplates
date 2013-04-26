@@ -10,6 +10,15 @@ namespace RazorTemplates.Core
         private readonly StringBuilder _buffer = new StringBuilder();
 
         /// <summary>
+        /// Gets or sets dynamic model which data should be rendered.
+        /// </summary>
+        public new virtual TModel Model
+        {
+            get { return (TModel)base.Model; }
+            set { base.Model = value; }
+        }
+
+        /// <summary>
         /// Renders specified model.
         /// </summary>
         public virtual string Render(TModel model)

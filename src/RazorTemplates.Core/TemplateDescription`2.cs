@@ -61,14 +61,43 @@ namespace RazorTemplates.Core
         /// </summary>
         public ITemplate<TModel> Compile<TModel>(string source)
         {
-            var compilationResult = InternalCompile(source);
-            return new Template<T, TModel>(compilationResult.Type, compilationResult.SourceCode, _templateInitializer);
+            if (string.IsNullOrEmpty(source))
+                throw new ArgumentException(
+                    "Template source can't be null or empty string.",
+                    "source");
+
+            Action<TemplateBase<TModel>> initializer = null;
+            if (_templateInitializer != null)
+            {
+                initializer = _templateInitializer as Action<TemplateBase<TModel>>;
+                if (initializer == null)
+                    throw new InvalidOperationException(
+                        string.Format(
+                            "Template initializer should be a '{0}', but '{1}' accepted.",
+                            typeof(Action<TemplateBase<TModel>>),
+                            _templateInitializer.GetType()));
+            }
+
+            var compilationResult = InternalCompile<TModel>(source);
+            return new Template<TemplateBase<TModel>, TModel>(compilationResult.Type, compilationResult.SourceCode, initializer);
         }
 
         internal TemplateCompilationResult InternalCompile(string source)
         {
-            var compilationResult = TemplateCompiler.Compile(typeof(T), source, _namespaces, CompilationDirectory);
-            return compilationResult;
+            return TemplateCompiler.Compile(
+                typeof(TemplateBase),
+                source,
+                _namespaces,
+                CompilationDirectory);
+        }
+
+        internal TemplateCompilationResult InternalCompile<TModel>(string source)
+        {
+            return TemplateCompiler.Compile(
+                typeof(TemplateBase<TModel>),
+                source,
+                _namespaces,
+                CompilationDirectory);
         }
     }
 }
