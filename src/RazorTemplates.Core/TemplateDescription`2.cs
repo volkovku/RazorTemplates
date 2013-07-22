@@ -85,7 +85,7 @@ namespace RazorTemplates.Core
         internal TemplateCompilationResult InternalCompile(string source)
         {
             return TemplateCompiler.Compile(
-                typeof(TemplateBase),
+                typeof(T),
                 source,
                 _namespaces,
                 CompilationDirectory);
