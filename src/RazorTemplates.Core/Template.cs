@@ -19,6 +19,15 @@ namespace RazorTemplates.Core
         }
 
         /// <summary>
+        /// Gets or sets the language that will be used to compile templates.
+        /// </summary>
+        public static TemplateCompilationLanguage Language
+        {
+            get { return TemplateCompiler.Language; }
+            set { TemplateCompiler.Language = value; }
+        }
+
+        /// <summary>
         /// Returns template created from specified source.
         /// </summary>
         public static ITemplate<dynamic> Compile(string source)
