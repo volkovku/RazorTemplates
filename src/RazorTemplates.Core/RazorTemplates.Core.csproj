@@ -38,6 +38,7 @@
     <AssemblyOriginatorKeyFile>RazorTemplates.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -55,6 +56,7 @@
     <Compile Include="ITemplate`1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TemplateBase`1.cs" />
+    <Compile Include="TemplateCompilationLanguage.cs" />
     <Compile Include="TemplateCompilationResult.cs" />
     <Compile Include="Template`1.cs" />
     <Compile Include="TemplateDescription`2.cs" />
