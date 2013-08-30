@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Web.Razor;
 using Microsoft.CSharp;
+using Microsoft.VisualBasic;
 
 namespace RazorTemplates.Core
 {
@@ -28,6 +29,8 @@ namespace RazorTemplates.Core
 
         public static bool Debug { get; set; }
 
+        public static TemplateCompilationLanguage Language { get; set; }
+
         internal static TemplateCompilationResult Compile(Type templateType, string templateBody, IEnumerable<string> namespaces, string tempDirectory)
         {
             LoadRuntimeBinder();
@@ -36,7 +39,18 @@ namespace RazorTemplates.Core
             var compileUnit = GetCodeCompileUnit(templateType, namespaces, templateBody, out className);
 
             string sourceCode;
-            var codeProvider = new CSharpCodeProvider();
+            CodeDomProvider codeProvider;
+            switch (Language)
+            {
+             case TemplateCompilationLanguage.CSharp:
+                    codeProvider = new CSharpCodeProvider();
+                    break;
+                case TemplateCompilationLanguage.VisualBasic:
+                    codeProvider = new VBCodeProvider();
+                    break;
+                default:
+                    throw new NotSupportedException("Language not supported.");
+            }
             var builder = new StringBuilder();
 
             using (var writer = new StringWriter(builder, CultureInfo.InvariantCulture))
@@ -69,6 +83,11 @@ namespace RazorTemplates.Core
                 CompilerOptions = "/target:library /optimize",
             };
 
+            if (Language == TemplateCompilationLanguage.VisualBasic)
+            {
+                parameters.CompilerOptions += " /optioninfer /optioncompare:text /optionstrict /optionexplicit";
+            }
+
             tempDirectory = string.IsNullOrWhiteSpace(tempDirectory)
                 ? GetTempDirectoryFromEnvironment()
                 : tempDirectory;
@@ -100,6 +119,7 @@ namespace RazorTemplates.Core
                 .GroupBy(a => a.FullName)
                 .Select(grp => grp.First())
                 .Select(a => a.Location)
+                .Where(a => !String.IsNullOrWhiteSpace(a))
                 .ToArray();
         }
 
@@ -116,7 +136,18 @@ namespace RazorTemplates.Core
 
         private static RazorTemplateEngine CreateRazorEngine(Type templateType, IEnumerable<string> namespaces, out string className)
         {
-            var host = new RazorEngineHost(new CSharpRazorCodeLanguage());
+            RazorEngineHost host;
+            switch (Language)
+            {
+                case TemplateCompilationLanguage.CSharp:
+                    host = new RazorEngineHost(new CSharpRazorCodeLanguage());
+                    break;
+                case TemplateCompilationLanguage.VisualBasic:
+                    host = new RazorEngineHost(new VBRazorCodeLanguage());
+                    break;
+                default:
+                    throw new NotSupportedException("Language not supported.");
+            }
 
             className = "Template_" + GetNextTemplateNumber();
 
