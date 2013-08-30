@@ -28,6 +28,7 @@ namespace RazorTemplates.Core
         private static int _templateNumber;
 
         public static bool Debug { get; set; }
+
         public static TemplateCompilationLanguage Language { get; set; }
 
         internal static TemplateCompilationResult Compile(Type templateType, string templateBody, IEnumerable<string> namespaces, string tempDirectory)
