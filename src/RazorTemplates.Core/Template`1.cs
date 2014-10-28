@@ -28,10 +28,26 @@ namespace RazorTemplates.Core
             var template = CreateTemplateInstance();
 
             if (!ReferenceEquals(null, model)
-                && model.GetType().Name.StartsWith("<>f__AnonymousType"))
+                && IsAnonymousType(model))
                 return template.Render(CreateExpandoObject(model));
 
             return template.Render(model);
+        }
+
+        /// <summary>
+        /// Is the type of the model an Anonymous type?
+        /// </summary>
+        /// <param name="model">Model to be checked</param>
+        /// <returns>True if the model is a C# or VB.NET anonymous type</returns>
+        /// <remarks>See also http://msdn.microsoft.com/en-us/library/cc468406(v=vs.90).aspx </remarks>
+        private bool IsAnonymousType(object model)
+        {
+            const string csharpAnonPrefix = "<>f__AnonymousType";
+            const string vbAnonPrefix = "VB$Anonymous";
+
+            var typeName = model.GetType().Name;
+
+            return (typeName.StartsWith(csharpAnonPrefix) || typeName.StartsWith(vbAnonPrefix));
         }
 
         protected T CreateTemplateInstance()
