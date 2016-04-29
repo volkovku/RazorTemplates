@@ -40,6 +40,7 @@ namespace RazorTemplates.Core
             var compilationResult = TemplateCompiler.Compile(
                 typeof(TemplateBase),
                 source,
+                Enumerable.Empty<string>() /* assembly file names */,
                 Enumerable.Empty<string>() /* namespaces */,
                 null /* compilation directory */);
 
@@ -59,6 +60,7 @@ namespace RazorTemplates.Core
             var compilationResult = TemplateCompiler.Compile(
                 typeof (TemplateBase<TModel>),
                 source,
+                Enumerable.Empty<string>() /* assembly file names */,
                 Enumerable.Empty<string>() /* namespaces */,
                 null /* compilation directory */);
 
