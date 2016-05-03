@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Web.Razor;
@@ -31,7 +32,12 @@ namespace RazorTemplates.Core
 
         public static TemplateCompilationLanguage Language { get; set; }
 
-        internal static TemplateCompilationResult Compile(Type templateType, string templateBody, IEnumerable<string> namespaces, string tempDirectory)
+        internal static TemplateCompilationResult Compile(
+            Type templateType,
+            string templateBody,
+            IEnumerable<string> assemblyFileNames,
+            IEnumerable<string> namespaces,
+            string tempDirectory)
         {
             LoadRuntimeBinder();
 
@@ -59,7 +65,7 @@ namespace RazorTemplates.Core
                 sourceCode = builder.ToString();
             }
 
-            var parameters = CreateComplilerParameters(tempDirectory);
+            var parameters = CreateCompilerParameters(tempDirectory, assemblyFileNames);
             var compileResult = codeProvider.CompileAssemblyFromDom(parameters, compileUnit);
             if (compileResult.Errors != null && compileResult.Errors.Count > 0)
                 throw new TemplateCompilationException(compileResult.Errors, sourceCode, templateBody);
@@ -73,8 +79,10 @@ namespace RazorTemplates.Core
             };
         }
 
-        private static CompilerParameters CreateComplilerParameters(string tempDirectory)
+        private static CompilerParameters CreateCompilerParameters(string tempDirectory, IEnumerable<string> assemblyFileNames)
         {
+            LoadAssemblies(assemblyFileNames);
+
             var parameters = new CompilerParameters
             {
                 GenerateInMemory = true,
@@ -109,6 +117,21 @@ namespace RazorTemplates.Core
         {
             var tempDirectory = Environment.GetEnvironmentVariable("TEMP");
             return !string.IsNullOrEmpty(tempDirectory) ? tempDirectory : Path.GetTempPath();
+        }
+
+        private static void LoadAssemblies(IEnumerable<string> assemblyFileNames)
+        {
+            if (assemblyFileNames == null)
+            {
+                return;
+            }
+
+            foreach (var assemblyFileName in assemblyFileNames)
+            {
+                var assemblyPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, assemblyFileName);
+                var assembly = Assembly.LoadFile(assemblyPath);
+                AppDomain.CurrentDomain.Load(assembly.GetName());
+            }
         }
 
         private static string[] GetLoadedAssemblies()

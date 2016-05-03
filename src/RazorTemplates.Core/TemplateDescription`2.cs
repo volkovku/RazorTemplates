@@ -9,6 +9,7 @@ namespace RazorTemplates.Core
     public class TemplateDescription<T> where T : TemplateBase
     {
         private readonly HashSet<string> _namespaces = new HashSet<string>();
+        private readonly HashSet<string> _assemblyFileNames = new HashSet<string>();
         private readonly Action<T> _templateInitializer;
 
         /// <summary>
@@ -30,6 +31,18 @@ namespace RazorTemplates.Core
         public TemplateDescription<T> AddNamespace(string @namespace)
         {
             _namespaces.Add(@namespace);
+            return this;
+        }
+
+        /// <summary>
+        /// Specifies that Razor template should load specified assemblies
+        /// </summary>
+        public TemplateDescription<T> AddAssemblies(params string[] assemblyFileNames)
+        {
+            foreach (var assemblyFileName in assemblyFileNames)
+            {
+                _assemblyFileNames.Add(assemblyFileName);
+            }
             return this;
         }
 
@@ -87,6 +100,7 @@ namespace RazorTemplates.Core
             return TemplateCompiler.Compile(
                 typeof(T),
                 source,
+                _assemblyFileNames,
                 _namespaces,
                 CompilationDirectory);
         }
@@ -96,6 +110,7 @@ namespace RazorTemplates.Core
             return TemplateCompiler.Compile(
                 typeof(TemplateBase<TModel>),
                 source,
+                _assemblyFileNames,
                 _namespaces,
                 CompilationDirectory);
         }

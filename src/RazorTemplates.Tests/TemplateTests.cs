@@ -1,4 +1,5 @@
-﻿using System.Dynamic;
+﻿using System;
+using System.Dynamic;
 using System.IO;
 using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -27,7 +28,7 @@ namespace RazorTemplates.Tests
         }
 
         [TestMethod]
-        public void ItShouldSupportAnnonymousObjects()
+        public void ItShouldSupportAnonymousObjects()
         {
             var obj = new {Count = 1, Item = "apple"};
             var template = Template.Compile("There is @Model.Count @Model.Item in the box.");
@@ -43,13 +44,27 @@ namespace RazorTemplates.Tests
                 .GetManifestResourceStream("RazorTemplates.Tests.Template.cshtml");
 
             var templateContent = new StreamReader(templateStream).ReadToEnd();
-            var template = Template.Compile<TestModel>(templateContent);
+            var template = Template
+                .WithBaseType<TemplateBase>()
+                .AddAssemblies("Newtonsoft.Json.dll")
+                .AddNamespace("Newtonsoft.Json")
+                .Compile<TestModel>(templateContent);
             var model = new TestModel { Message = "Hello world" };
 
-            var render = template.Render(model);
+            Assert.AreEqual(model.Message + "\r\n{\"Message\":\"Hello world\"}\r\n", template.Render(model));
+        }
 
-            Assert.AreEqual(render, model.Message);
+        [TestMethod]
+        public void ItShouldLoadAssemblies()
+        {
+            var obj = new { Count = 1, Item = "apple" };
+            var template = Template
+                .WithBaseType<TemplateBase>()
+                .AddAssemblies("Newtonsoft.Json.dll")
+                .AddNamespace("Newtonsoft.Json")
+                .Compile("There is @Model.Count @Model.Item in the box. @JsonConvert.SerializeObject(@Model)");
+
+            Assert.AreEqual("There is 1 apple in the box. {\"Count\":1,\"Item\":\"apple\"}", template.Render(obj));
         }
     }
-  
 }

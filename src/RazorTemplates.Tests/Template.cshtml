@@ -1,3 +1,4 @@
 ﻿@inherits Core.TemplateBase<RazorTemplates.Tests.TestModel>
               
 @Model.Message
+@JsonConvert.SerializeObject(Model)
