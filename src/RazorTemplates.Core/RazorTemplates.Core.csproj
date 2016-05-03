@@ -66,12 +66,12 @@
     <Compile Include="TemplateCompilationException.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="RazorTemplates.Core.nuspec" />
     <None Include="RazorTemplates.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-
   <Target Name="AfterBuild" Condition=" '$(Configuration)' == 'Release'">
-    <Exec Command="nuget pack RazorTemplates.Core.csproj -Prop Configuration=Release"></Exec>
+    <Exec Command="nuget pack RazorTemplates.Core.csproj -Prop Configuration=Release">
+    </Exec>
   </Target>
-
 </Project>
