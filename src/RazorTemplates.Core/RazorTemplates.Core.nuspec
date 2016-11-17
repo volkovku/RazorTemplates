@@ -14,5 +14,8 @@
     <releaseNotes>Bugfix: loading of additional assemblies</releaseNotes>
     <copyright>Copyright © RazorTemplates Project 2012</copyright>
     <tags>razor razorengine templating razortemplates</tags>
+    <dependencies>
+      <dependency id="Microsoft.AspNet.Razor" version="3.2.3" targetFramework="net46" />
+    </dependencies>
   </metadata>
 </package>
