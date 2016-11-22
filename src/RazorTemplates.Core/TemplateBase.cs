@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.IO;
+using System.Text;
 using RazorTemplates.Core.Infrastructure;
 
 namespace RazorTemplates.Core
@@ -47,8 +48,24 @@ namespace RazorTemplates.Core
         /// </summary>
         protected void Write(object value)
         {
-            _buffer.Append(value);
-        }
+			var helper = value as HelperResult;
+			if (helper != null)
+			{
+				_buffer.Append(helper.GetString());
+			}
+			else
+			{
+				_buffer.Append(value);
+			}
+		}
+
+		/// <summary>
+        /// Writes a string representation of specified object.
+        /// </summary>
+        protected void Write(HelperResult helper)
+		{
+			_buffer.Append(helper.GetString());
+		}
 
         /// <summary>
         /// Writes specified string.
@@ -86,5 +103,43 @@ namespace RazorTemplates.Core
 
             _buffer.Append(suffix.Value);
         }
+
+		public void WriteTo<T>(TextWriter writer, int value)
+		{
+			writer.Write(value);
+		}
+
+		public void WriteLiteralTo(TextWriter writer, int value)
+		{
+			writer.Write(value);
+		}
+
+		public void WriteTo(TextWriter writer, string value)
+		{
+			if (value == null) return;
+			writer.Write(value);
+		}
+
+		public void WriteLiteralTo(TextWriter writer, string value)
+		{
+			if (value == null) return;
+			writer.Write(value);
+		}
+
+	public void WriteTo(TextWriter writer, object value)
+	{
+			if (value == null) return;
+			writer.Write(value);
+	}
+
+	public void WriteLiteralTo(TextWriter writer, object value)
+	{
+			if (value == null) return;
+			writer.Write(value);
+	}
+
+	 
+
     }
+		
 }

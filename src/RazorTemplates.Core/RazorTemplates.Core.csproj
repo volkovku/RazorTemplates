@@ -64,6 +64,8 @@
     <Compile Include="Template.cs" />
     <Compile Include="TemplateBase.cs" />
     <Compile Include="TemplateCompilationException.cs" />
+    <Compile Include="CustomEngineHost.cs" />
+    <Compile Include="HelperResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="RazorTemplates.Core.nuspec" />
@@ -71,7 +73,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="AfterBuild" Condition=" '$(Configuration)' == 'Release'">
-    <Exec Command="nuget pack RazorTemplates.Core.csproj -Prop Configuration=Release">
-    </Exec>
+  <!--  <Exec Command="nuget pack RazorTemplates.Core.csproj -Prop Configuration=Release">
+    </Exec>-->
   </Target>
 </Project>

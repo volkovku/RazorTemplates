@@ -1,0 +1,21 @@
+﻿<Properties StartupConfiguration="{522203D1-1AAC-4AA1-A796-1ABD8F61F9FA}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="RazorTemplates.Core/TemplateCompiler.cs">
+    <Files>
+      <File FileName="RazorTemplates.Core/ITemplate`1.cs" Line="14" Column="40" />
+      <File FileName="RazorTemplates.Core/Template`1.cs" Line="1" Column="1" />
+      <File FileName="RazorTemplates.Core/TemplateBase.cs" Line="14" Column="22" />
+      <File FileName="RazorTemplates.Core/CustomEngineHost.cs" Line="13" Column="18" />
+      <File FileName="RazorTemplates.Core/HelperResult.cs" Line="18" Column="11" />
+      <File FileName="RazorTemplates.Core/TemplateCompiler.cs" Line="185" Column="47" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/laurel/git/RazorTemplates-lx/src/RazorTemplates.Core/Custom.cs" line="27" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.RazorTemplates.Samples PreferredExecutionTarget="MonoDevelop.Default" />
+  <MultiItemStartupConfigurations />
+</Properties>

@@ -166,10 +166,10 @@ namespace RazorTemplates.Core
             switch (Language)
             {
                 case TemplateCompilationLanguage.CSharp:
-                    host = new RazorEngineHost(new CSharpRazorCodeLanguage());
+                    host = new CustomEngineHost(new CSharpRazorCodeLanguage());
                     break;
                 case TemplateCompilationLanguage.VisualBasic:
-                    host = new RazorEngineHost(new VBRazorCodeLanguage());
+                    host = new CustomEngineHost(new VBRazorCodeLanguage());
                     break;
                 default:
                     throw new NotSupportedException("Language not supported.");
