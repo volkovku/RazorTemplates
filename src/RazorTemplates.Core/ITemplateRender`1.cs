@@ -1,9 +1,9 @@
-﻿namespace Rhythm.Text
+﻿namespace Rhythm.Text.Templating
 {
     /// <summary>
     /// Describes an interface of template.
     /// </summary>
-    public interface ICompiledApi<in TModel>
+    public interface ITemplateRender<in TModel>
     {
         /// <summary>
         /// Returns generated source code for this template.

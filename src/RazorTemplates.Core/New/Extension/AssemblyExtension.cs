@@ -9,7 +9,7 @@ using System;
 using System.IO;
 using System.Reflection;
 
-namespace Rhythm.Text.Extension
+namespace Rhythm.Text.Templating.Extension
 {
     public static class AssemblyExtension
     {

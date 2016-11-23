@@ -8,7 +8,7 @@
 using System.Web.Razor;
 using System.Web.Razor.Parser;
 
-namespace Rhythm.Text.Core.Generator.VB
+namespace Rhythm.Text.Templating.Core.Generator.VB
 {
     public class XiptonVBCodeLanguage : VBRazorCodeLanguage, IXiptonCodeLanguage
     {

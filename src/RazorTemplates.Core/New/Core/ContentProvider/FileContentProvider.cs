@@ -9,10 +9,10 @@ using System;
 using System.IO;
 using System.Security.Permissions;
 using System.Xml.Linq;
-using Rhythm.Text.Config;
-using Rhythm.Text.Extension;
+using Rhythm.Text.Templating.Config;
+using Rhythm.Text.Templating.Extension;
 
-namespace Rhythm.Text.Core.ContentProvider
+namespace Rhythm.Text.Templating.Core.ContentProvider
 {
     /// <summary>
     /// The FileContentProvider provides content from files requested by virtual path names.

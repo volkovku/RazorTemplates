@@ -13,7 +13,7 @@ using System.Dynamic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
-namespace Rhythm.Text.Core
+namespace Rhythm.Text.Templating.Core
 {
     /// <summary>
     /// This class is used for both the template's Model (with anonymous model types only) and ViewBag property

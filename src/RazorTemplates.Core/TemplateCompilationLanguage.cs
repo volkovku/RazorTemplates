@@ -1,4 +1,4 @@
-﻿namespace Rhythm.Text
+﻿namespace Rhythm.Text.Templating
 {
     public enum TemplateCompilationLanguage
     {

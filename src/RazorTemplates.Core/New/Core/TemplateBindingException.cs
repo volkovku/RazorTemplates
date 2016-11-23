@@ -8,7 +8,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace Rhythm.Text.Core
+namespace Rhythm.Text.Templating.Core
 {
     // thrown if any runtime binding error (late binding error) occurs at any template
     [Serializable]

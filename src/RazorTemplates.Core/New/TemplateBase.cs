@@ -13,10 +13,10 @@ using System.Dynamic;
 using System.IO;
 using System.Text;
 using Microsoft.CSharp.RuntimeBinder;
-using Rhythm.Text.Core;
-using Rhythm.Text.Extension;
+using Rhythm.Text.Templating.Core;
+using Rhythm.Text.Templating.Extension;
 
-namespace Rhythm.Text
+namespace Rhythm.Text.Templating
 {
     /// <summary>
     /// All templates must inherit this base class. 

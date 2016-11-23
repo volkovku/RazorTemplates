@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Rhythm.Text.Infrastructure
+namespace Rhythm.Text.Templating.Infrastructure
 {
     /// <summary>
     /// Position tagged value for support RazorEngine 2.0

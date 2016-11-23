@@ -5,7 +5,7 @@
  */
 #endregion
 
-namespace Rhythm.Text.Core.Generator
+namespace Rhythm.Text.Templating.Core.Generator
 {
 
     /// <summary>

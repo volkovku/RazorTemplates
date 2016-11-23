@@ -8,7 +8,7 @@ using System;
 using System.Globalization;
 using System.IO;
 
-namespace Rhythm.Text.Core {
+namespace Rhythm.Text.Templating.Core {
 
     public class HelperResult : ILiteralString {
         private readonly Action<TextWriter> _action;

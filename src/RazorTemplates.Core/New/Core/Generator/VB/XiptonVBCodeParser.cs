@@ -10,7 +10,7 @@ using System.Web.Razor.Parser;
 using System.Web.Razor.Parser.SyntaxTree;
 using System.Web.Razor.Tokenizer.Symbols;
 
-namespace Rhythm.Text.Core.Generator.VB
+namespace Rhythm.Text.Templating.Core.Generator.VB
 {
     /// <summary>
     /// This VB CodeParser is extended for being able to handle the @ModelType directive

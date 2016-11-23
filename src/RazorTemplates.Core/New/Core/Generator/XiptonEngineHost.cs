@@ -10,9 +10,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Razor;
 using System.Web.Razor.Generator;
-using Rhythm.Text.Config;
+using Rhythm.Text.Templating.Config;
 
-namespace Rhythm.Text
+namespace Rhythm.Text.Templating
 {
     /// <summary>
     /// The engine host is the part where the code rendering takes place.
@@ -42,7 +42,7 @@ namespace Rhythm.Text
             : base(config.Templates.Language)
         {
             if (config == null) throw new ArgumentNullException("config");
-            _defaultNamespace = "Rhythm.Text.Generated";
+            _defaultNamespace = "Generated";
             _config = config.AsReadonly();
             _defaultBaseClass = _config.Templates.NonGenericBaseTypeName;
             _namespaceImports = new HashSet<string>();

@@ -9,9 +9,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
-using Rhythm.Text.Extension;
+using Rhythm.Text.Templating.Extension;
 
-namespace Rhythm.Text.Config {
+namespace Rhythm.Text.Templating.Config {
 
     internal static class XElementExtension {
 

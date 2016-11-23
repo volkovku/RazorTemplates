@@ -8,7 +8,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace Rhythm.Text.Core
+namespace Rhythm.Text.Templating.Core
 {
     // thrown if there are problems detected with the template tree (parent or childs)
     [Serializable]

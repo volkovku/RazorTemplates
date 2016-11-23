@@ -9,12 +9,12 @@ using System;
 using System.Diagnostics;
 using System.Web.Razor;
 using System.Xml.Linq;
-using Rhythm.Text.Core.Generator;
-using Rhythm.Text.Core.Generator.CSharp;
-using Rhythm.Text.Core.Generator.VB;
-using Rhythm.Text.Extension;
+using Rhythm.Text.Templating.Core.Generator;
+using Rhythm.Text.Templating.Core.Generator.CSharp;
+using Rhythm.Text.Templating.Core.Generator.VB;
+using Rhythm.Text.Templating.Extension;
 
-namespace Rhythm.Text.Config
+namespace Rhythm.Text.Templating.Config
 {
     public class TemplatesElement : ConfigElement {
 

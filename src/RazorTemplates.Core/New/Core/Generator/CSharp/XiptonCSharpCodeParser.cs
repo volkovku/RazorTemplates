@@ -7,7 +7,7 @@
 
 using System.Web.Razor.Parser;
 
-namespace Rhythm.Text.Core.Generator.CSharp
+namespace Rhythm.Text.Templating.Core.Generator.CSharp
 {
     /// <summary>
     /// This C# CodeParser is extended for being able to handle the @model directive

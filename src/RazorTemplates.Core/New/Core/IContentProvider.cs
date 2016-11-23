@@ -7,9 +7,9 @@
 
 using System;
 using System.Xml.Linq;
-using Rhythm.Text.Core;
+using Rhythm.Text.Templating.Core;
 
-namespace Rhythm.Text {
+namespace Rhythm.Text.Templating {
 /// <summary>
     /// The contentent provider provides content by its virtual path.
     /// </summary>

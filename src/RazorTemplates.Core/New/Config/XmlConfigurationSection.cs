@@ -9,7 +9,7 @@ using System.Configuration;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace Rhythm.Text.Config {
+namespace Rhythm.Text.Templating.Config {
     /// <summary>
     /// General purpose configuration section. The whole section's inner xml is loaded without any validation.
     /// </summary>

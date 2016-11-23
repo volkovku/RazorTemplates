@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Dynamic;
-using Rhythm.Text.Core;
+using Rhythm.Text.Templating.Core;
 
-namespace Rhythm.Text
+namespace Rhythm.Text.Templating
 {
-    internal class CompiledApi<T, TModel> : ICompiledApi<TModel> where T : TemplateBase
+	internal class TemplateRender<TTemplate, TModel> : ITemplateRender<TModel> where TTemplate : TemplateBase
     {
         private readonly Type _templateType;
-        private readonly Action<T> _initializer;
+        private readonly Action<TTemplate> _initializer;
         private readonly string _sourceCode;
 
-        internal CompiledApi(Type templateType, string sourceCode, Action<T> initializer)
+        internal TemplateRender(Type templateType, string sourceCode, Action<TTemplate> initializer)
         {
             _templateType = templateType;
             _sourceCode = sourceCode;
@@ -44,9 +44,9 @@ namespace Rhythm.Text
 			}
         }
 
-        protected T CreateTemplateInstance()
+        protected TTemplate CreateTemplateInstance()
         {
-            var instance = (T)Activator.CreateInstance(_templateType);
+            var instance = (TTemplate)Activator.CreateInstance(_templateType);
 
             if (_initializer != null)
                 _initializer(instance);

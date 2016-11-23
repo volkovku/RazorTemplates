@@ -15,10 +15,10 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Xml.Linq;
-using Rhythm.Text.Config;
-using Rhythm.Text.Extension;
+using Rhythm.Text.Templating.Config;
+using Rhythm.Text.Templating.Extension;
 
-namespace Rhythm.Text.Core.ContentProvider
+namespace Rhythm.Text.Templating.Core.ContentProvider
 {
     /// <summary>
     /// The EmbeddedResourceContentProvider provides content from razor templates that 

@@ -7,9 +7,9 @@
 
 using System;
 using System.Collections.Generic;
-using Rhythm.Text.Core;
+using Rhythm.Text.Templating.Core;
 
-namespace Rhythm.Text
+namespace Rhythm.Text.Templating
 {
     /// <summary>
     /// All templates need to implement this interface. It is implementated by <see cref="TemplateBase"/>.

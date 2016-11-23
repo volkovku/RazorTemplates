@@ -14,11 +14,11 @@ using System.Reflection;
 using System.Web.Razor;
 using System.Xml;
 using System.Xml.Linq;
-using Rhythm.Text.Core;
-using Rhythm.Text.Core.ContentProvider;
-using Rhythm.Text.Extension;
+using Rhythm.Text.Templating.Core;
+using Rhythm.Text.Templating.Core.ContentProvider;
+using Rhythm.Text.Templating.Extension;
 
-namespace Rhythm.Text.Config {
+namespace Rhythm.Text.Templating.Config {
     /// <summary>
     /// Holds all configuration settings. The configuration is initialized together with the RazorMachine class.
     /// 
@@ -126,7 +126,7 @@ namespace Rhythm.Text.Config {
 
         IRazorConfigInitializer IRazorConfigInitializer.TryInitializeFromConfig() {
             EnsureNotReadonly();
-            var section = ConfigurationManager.GetSection("Rhythm.Text.config");
+			var section = ConfigurationManager.GetSection(typeof(RazorConfig).Namespace);
             XElement innerXml;
             if (section != null && (innerXml = section.CastTo<XmlConfigurationSection>().InnerXml) != null)
                 LoadSettingsFromXDocumentOrElseDefaults(new XDocument(innerXml));
@@ -155,19 +155,21 @@ namespace Rhythm.Text.Config {
                 throw new InvalidOperationException("Configuration is read-only, after it has been registered inside the razor context, and cannot be modified anymore.");
         }
 
+		  static IList<string> DefaultNamespaces = new List<string>{
+						"System",
+						"System.Collections",
+						"System.Collections.Generic",
+						"System.Dynamic",
+						"System.IO",
+				"System.Linq",
+				typeof(Rhythm.Text.Templating.Extension.StringExtension).Namespace
+		}.AsReadOnly();
+
+
         private static IList<string> CreateDefaultNamespaces() {
-            return
-                new List<string>
-                    {
-                        "System",
-                        "System.Collections",
-                        "System.Collections.Generic",
-                        "System.Dynamic",
-                        "System.IO",
-                        "System.Linq",
-                        "Rhythm.Text.Extension"
-                    }.AsReadOnly();
+            return DefaultNamespaces;
         }
+
         private static IList<string> CreateDefaultReferences() {
             return
                 new List<string>
@@ -181,6 +183,7 @@ namespace Rhythm.Text.Config {
                     }
                     .AsReadOnly();
         }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "created instances are disposed on CompositeContentProvider.Dispose()")]
         private static IList<Func<IContentProvider>> CreateDefaultContentProviders() {
             return new List<Func<IContentProvider>> { () => new FileContentProvider(Directory.Exists("./Views".MakeAbsoluteDirectoryPath()) ? "./Views" : ".") }.AsReadOnly();

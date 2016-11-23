@@ -8,9 +8,9 @@
 using System;
 using System.Collections.Generic;
 using System.Web.Razor;
-using Rhythm.Text.Core;
+using Rhythm.Text.Templating.Core;
 
-namespace Rhythm.Text.Config
+namespace Rhythm.Text.Templating.Config
 {
     public interface IRazorConfigInitializer
     {

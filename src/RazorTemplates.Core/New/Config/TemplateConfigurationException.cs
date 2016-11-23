@@ -7,9 +7,9 @@
 
 using System;
 using System.Runtime.Serialization;
-using Rhythm.Text.Core;
+using Rhythm.Text.Templating.Core;
 
-namespace Rhythm.Text.Config
+namespace Rhythm.Text.Templating.Config
 {
     [Serializable]
     public class TemplateConfigurationException : TemplateException

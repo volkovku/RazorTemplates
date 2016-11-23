@@ -10,7 +10,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Xml.Linq;
 
-namespace Rhythm.Text.Core.ContentProvider
+namespace Rhythm.Text.Templating.Core.ContentProvider
 {
     /// <summary>
     /// Provides in memory registration of content by its virtual path name with <see cref="RegisterTemplate"/>

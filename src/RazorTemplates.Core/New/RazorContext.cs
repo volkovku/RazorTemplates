@@ -6,11 +6,11 @@
 #endregion
 
 using System;
-using Rhythm.Text.Config;
-using Rhythm.Text.Core;
-using Rhythm.Text.Extension;
+using Rhythm.Text.Templating.Config;
+using Rhythm.Text.Templating.Core;
+using Rhythm.Text.Templating.Extension;
 
-namespace Rhythm.Text
+namespace Rhythm.Text.Templating
 {
     /// <summary>
     /// The RazorContext holds the template factory (with its type cache) and the configurtation.

@@ -3,7 +3,7 @@ using System.Globalization;
 using System.IO;
 using System.Web;
 
-namespace Rhythm.Text
+namespace Rhythm.Text.Templating
 {
 
 	public class HelperResult 

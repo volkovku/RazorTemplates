@@ -7,8 +7,8 @@
     <ProjectGuid>{F4411488-D1A2-4A06-8891-E44C3BDCC4A8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RazorTemplates.Core</RootNamespace>
-    <AssemblyName>RazorTemplates.Core</AssemblyName>
+    <RootNamespace>Rhythm.Text.Templating</RootNamespace>
+    <AssemblyName>Rhythm.Text.Templating</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -54,15 +54,15 @@
   <ItemGroup>
     <Compile Include="Infrastructure\AttributeValue.cs" />
     <Compile Include="Infrastructure\PositionTagged.cs" />
-    <Compile Include="ICompiledApi`1.cs" />
+    <Compile Include="ITemplateRender`1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TemplateBase`1.cs" />
     <Compile Include="TemplateCompilationLanguage.cs" />
     <Compile Include="TemplateCompilationResult.cs" />
-    <Compile Include="CompiledApi`1.cs" />
+    <Compile Include="TemplateRender`1.cs" />
     <Compile Include="TemplateDescription`2.cs" />
     <Compile Include="TemplateCompiler.cs" />
-    <Compile Include="CompiledApi.cs" />
+    <Compile Include="TemplateUtility.cs" />
     <Compile Include="TemplateBase.cs" />
     <Compile Include="TemplateCompilationException.cs" />
     <Compile Include="CustomEngineHost.cs" />

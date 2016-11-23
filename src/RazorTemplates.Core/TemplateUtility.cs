@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Linq;
 
-namespace Rhythm.Text
+namespace Rhythm.Text.Templating
 {
     /// <summary>
     /// Represents an entry point for create templates.
     /// </summary>
-    public static class CompiledApi
+    public static class TemplateUtility
     {
         /// <summary>
         /// Gets or sets flag which determines is templates debugging info will
@@ -30,7 +30,7 @@ namespace Rhythm.Text
         /// <summary>
         /// Returns template created from specified source.
         /// </summary>
-        public static ICompiledApi<dynamic> Compile(string source)
+        public static ITemplateRender<dynamic> Compile(string source)
         {
             if (string.IsNullOrEmpty(source))
                 throw new ArgumentException(
@@ -44,13 +44,13 @@ namespace Rhythm.Text
                 Enumerable.Empty<string>() /* namespaces */,
                 null /* compilation directory */);
 
-            return new CompiledApi<TemplateBase, object>(compilationResult.Type, compilationResult.SourceCode, null);
+            return new TemplateRender<TemplateBase, object>(compilationResult.Type, compilationResult.SourceCode, null);
         }
 
         /// <summary>
         /// Returns strong typed template created from specified source.
         /// </summary>
-        public static ICompiledApi<TModel> Compile<TModel>(string source)
+        public static ITemplateRender<TModel> Compile<TModel>(string source)
         {
             if (string.IsNullOrEmpty(source))
                 throw new ArgumentException(
@@ -64,7 +64,7 @@ namespace Rhythm.Text
                 Enumerable.Empty<string>() /* namespaces */,
                 null /* compilation directory */);
 
-            return new CompiledApi<TemplateBase<TModel>, TModel>(compilationResult.Type, compilationResult.SourceCode, null);
+            return new TemplateRender<TemplateBase<TModel>, TModel>(compilationResult.Type, compilationResult.SourceCode, null);
         }
 
         /// <summary>

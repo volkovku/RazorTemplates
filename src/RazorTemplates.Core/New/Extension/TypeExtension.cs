@@ -7,7 +7,7 @@
 
 using System;
 
-namespace Rhythm.Text.Extension
+namespace Rhythm.Text.Templating.Extension
 {
     public static class TypeExtension
     {

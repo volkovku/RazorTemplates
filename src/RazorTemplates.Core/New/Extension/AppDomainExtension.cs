@@ -12,7 +12,7 @@ using System.Linq;
 using System.Reflection;
 using System.Web.Razor;
 
-namespace Rhythm.Text.Extension {
+namespace Rhythm.Text.Templating.Extension {
     public static class AppDomainExtension {
 
         private static readonly ConcurrentDictionary<string,bool> 

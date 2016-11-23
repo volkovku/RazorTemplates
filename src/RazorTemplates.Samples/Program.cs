@@ -1,6 +1,6 @@
 ﻿using System;
-using Rhythm.Text;
-using Rhythm.Text.Config;
+using Rhythm.Text.Templating;
+using Rhythm.Text.Templating.Config;
 
 namespace Rhythm.Samples
 {
@@ -8,21 +8,40 @@ namespace Rhythm.Samples
     {
         static void Main()
         {
-            SimpleTemplate();
+			SimpleTemplate();
             TemplateWithCustomNamespaces();
-
+			HelperTemplate();
             Console.ReadLine();
         }
 
+
+
+		public static void HelperTemplate()
+		{
+			
+			var template = TemplateUtility.Compile(@"
+@helper h1(string str){
+	<span attr='ahahha@(System.DateTime.Now) @(str)'>helper out @(str) </span>
+}			
+
+Hello @Model.Name!
+hello helper @h1(""ssssssss"")
+");
+			Console.WriteLine(template.Render(new { Name = "world" }));
+		}
+
+
+
+
         public static void SimpleTemplate()
 		{
-            var template = CompiledApi.Compile("Hello @Model.Name!");
+            var template = TemplateUtility.Compile("Hello @Model.Name!");
             Console.WriteLine(template.Render(new { Name = "world" }));
         }
 
         public static void TemplateWithCustomNamespaces()
         {
-            var template = CompiledApi
+            var template = TemplateUtility
                 .WithBaseType<TemplateBase>()
                 .AddNamespace("Rhythm.Samples")
                 .Compile(@"There is @Model.Apples @Plural.Form(Model.Apples, new [] { ""apple"", ""apples"" }) in the box.");

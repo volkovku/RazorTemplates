@@ -8,7 +8,7 @@
 using System.Web.Razor;
 using System.Web.Razor.Parser;
 
-namespace Rhythm.Text.Core.Generator.CSharp
+namespace Rhythm.Text.Templating.Core.Generator.CSharp
 {
     public class XiptonCSharpCodeLanguage : CSharpRazorCodeLanguage, IXiptonCodeLanguage
     {

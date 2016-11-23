@@ -7,7 +7,7 @@
 
 using System;
 
-namespace Rhythm.Text.Core
+namespace Rhythm.Text.Templating.Core
 {
     public class ContentModifiedArgs : EventArgs
     {

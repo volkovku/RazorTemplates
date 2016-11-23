@@ -10,9 +10,9 @@ using System.CodeDom;
 using System.Web.Razor;
 using System.Web.Razor.Generator;
 using System.Web.Razor.Parser.SyntaxTree;
-using Rhythm.Text.Extension;
+using Rhythm.Text.Templating.Extension;
 
-namespace Rhythm.Text.Core.Generator
+namespace Rhythm.Text.Templating.Core.Generator
 {
     /// <summary>
     /// SpanCodeGenerator for the model directive

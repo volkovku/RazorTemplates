@@ -9,9 +9,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
-using Rhythm.Text.Extension;
+using Rhythm.Text.Templating.Extension;
 
-namespace Rhythm.Text.Core.ContentProvider
+namespace Rhythm.Text.Templating.Core.ContentProvider
 {
     /// <summary>
     /// The CompositeContentProvider behaves like an IContentProvider, and holds 

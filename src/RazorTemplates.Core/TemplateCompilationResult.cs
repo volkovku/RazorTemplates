@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Rhythm.Text
+namespace Rhythm.Text.Templating
 {
     /// <summary>
     /// Represents result of template compilation.

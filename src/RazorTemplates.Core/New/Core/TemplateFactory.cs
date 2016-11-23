@@ -15,10 +15,10 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Web.Razor;
-using Rhythm.Text.Core.Generator;
-using Rhythm.Text.Extension;
+using Rhythm.Text.Templating.Core.Generator;
+using Rhythm.Text.Templating.Extension;
 
-namespace Rhythm.Text.Core
+namespace Rhythm.Text.Templating.Core
 {
     /// <summary>
     /// The TemplateFactory provides template instances by their virtual path names. 

@@ -4,7 +4,7 @@
  * Licensed under the Microsoft Public License (MS-PL) http://www.microsoft.com/en-us/openness/licenses.aspx#MPL
  */
 #endregion
-namespace Rhythm.Text
+namespace Rhythm.Text.Templating
 {
     public interface ILiteralString{}
 }

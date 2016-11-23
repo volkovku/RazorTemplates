@@ -7,9 +7,9 @@
 
 using System;
 using System.Text;
-using Rhythm.Text.Extension;
+using Rhythm.Text.Templating.Extension;
 
-namespace Rhythm.Text.Core
+namespace Rhythm.Text.Templating.Core
 {
     /// <summary>
     /// The VirtualPathBuilder builds a virtual path and provides virtual path operations.

@@ -10,11 +10,11 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Rhythm.Text.Config;
-using Rhythm.Text.Core.ContentProvider;
-using Rhythm.Text.Extension;
+using Rhythm.Text.Templating.Config;
+using Rhythm.Text.Templating.Core.ContentProvider;
+using Rhythm.Text.Templating.Extension;
 
-namespace Rhythm.Text.Core
+namespace Rhythm.Text.Templating.Core
 {
     /// <summary>
     /// The ContentManager assembles content and delivers final content to the template factory. It implements additional routing logic on top of the content providers.

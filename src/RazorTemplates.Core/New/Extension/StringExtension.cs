@@ -8,7 +8,7 @@
 using System;
 using System.IO;
 
-namespace Rhythm.Text.Extension
+namespace Rhythm.Text.Templating.Extension
 {
     public static class StringExtension
     {

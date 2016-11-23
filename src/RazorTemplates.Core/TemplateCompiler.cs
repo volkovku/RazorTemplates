@@ -11,9 +11,9 @@ using System.Threading;
 using System.Web.Razor;
 using Microsoft.CSharp;
 using Microsoft.VisualBasic;
-using Rhythm.Text.Config;
+using Rhythm.Text.Templating.Config;
 
-namespace Rhythm.Text
+namespace Rhythm.Text.Templating
 {
     internal static class TemplateCompiler
     {

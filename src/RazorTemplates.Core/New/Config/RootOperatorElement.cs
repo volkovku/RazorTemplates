@@ -7,7 +7,7 @@
 
 using System.Xml.Linq;
 
-namespace Rhythm.Text.Config
+namespace Rhythm.Text.Templating.Config
 {
     public class RootOperatorElement : ConfigElement {
 

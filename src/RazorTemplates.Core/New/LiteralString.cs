@@ -7,7 +7,7 @@
 
 using System;
 
-namespace Rhythm.Text {
+namespace Rhythm.Text.Templating {
     /// <summary>
     /// a LiteralString represents a string that should not be encoded (again)
     /// </summary>

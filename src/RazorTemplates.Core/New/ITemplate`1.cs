@@ -5,7 +5,7 @@
  */
 #endregion
 
-namespace Rhythm.Text
+namespace Rhythm.Text.Templating
 {
     /// <summary>
     /// This interface redefines the Model property making it typed

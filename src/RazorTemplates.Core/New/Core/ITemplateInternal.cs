@@ -5,7 +5,7 @@
  */
 #endregion
 
-namespace Rhythm.Text.Core
+namespace Rhythm.Text.Templating.Core
 {
     internal interface ITemplateInternal : ITemplate
     {
