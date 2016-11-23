@@ -1,4 +1,4 @@
-﻿namespace RazorTemplates.Tests
+﻿namespace Rhythm.Tests
 {
     public class TestModel
     {

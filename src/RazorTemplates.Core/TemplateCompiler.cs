@@ -11,8 +11,9 @@ using System.Threading;
 using System.Web.Razor;
 using Microsoft.CSharp;
 using Microsoft.VisualBasic;
+using Rhythm.Text.Templating.Config;
 
-namespace RazorTemplates.Core
+namespace Rhythm.Text.Templating
 {
     internal static class TemplateCompiler
     {
@@ -25,7 +26,10 @@ namespace RazorTemplates.Core
             "System.Linq"
         };
 
-        private static volatile bool _runtimeBinderLoaded;
+		static readonly RazorConfig cfg = (RazorConfig)new RazorConfig().Initializer.TryInitializeFromConfig();
+
+
+		private static volatile bool _runtimeBinderLoaded;
         private static int _templateNumber;
 
         public static bool Debug { get; set; }
@@ -67,7 +71,10 @@ namespace RazorTemplates.Core
 
             var parameters = CreateCompilerParameters(tempDirectory, assemblyFileNames);
             var compileResult = codeProvider.CompileAssemblyFromDom(parameters, compileUnit);
-            if (compileResult.Errors != null && compileResult.Errors.Count > 0)
+
+			// if (compileResult.Errors != null && compileResult.Errors.Count > 0)
+			// fix for mono if have compile warnings then compileResult.Errors is not null & compileResult.Errors.Count has value
+			if (compileResult.Errors != null && compileResult.Errors.HasErrors)
                 throw new TemplateCompilationException(compileResult.Errors, sourceCode, templateBody);
 
             var fullClassName = TEMPLATES_NAMESPACE + "." + className;
@@ -163,10 +170,10 @@ namespace RazorTemplates.Core
             switch (Language)
             {
                 case TemplateCompilationLanguage.CSharp:
-                    host = new RazorEngineHost(new CSharpRazorCodeLanguage());
+                    host = new XiptonEngineHost(cfg);
                     break;
                 case TemplateCompilationLanguage.VisualBasic:
-                    host = new RazorEngineHost(new VBRazorCodeLanguage());
+                    host = new XiptonEngineHost(cfg);
                     break;
                 default:
                     throw new NotSupportedException("Language not supported.");

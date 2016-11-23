@@ -1,7 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RazorTemplates.Core;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Rhythm.Text;
 
-namespace RazorTemplates.Tests.Bugs
+namespace Rhythm.Tests.Bugs
 {
     [TestClass]
     public class AddingExtraPeriodToSomeUrls

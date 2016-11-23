@@ -1,29 +1,49 @@
 ﻿using System;
-using RazorTemplates.Core;
+using Rhythm.Text.Templating;
+using Rhythm.Text.Templating.Config;
 
-namespace RazorTemplates.Samples
+namespace Rhythm.Samples
 {
     class Program
     {
         static void Main()
         {
-            SimpleTemplate();
+			SimpleTemplate();
             TemplateWithCustomNamespaces();
-
+			HelperTemplate();
             Console.ReadLine();
         }
 
+
+
+		public static void HelperTemplate()
+		{
+			
+			var template = TemplateUtility.Compile(@"
+@helper h1(string str){
+	<span attr='ahahha@(System.DateTime.Now) @(str)'>helper out @(str) </span>
+}			
+
+Hello @Model.Name!
+hello helper @h1(""ssssssss"")
+");
+			Console.WriteLine(template.Render(new { Name = "world" }));
+		}
+
+
+
+
         public static void SimpleTemplate()
-        {
-            var template = Template.Compile("Hello @Model.Name!");
+		{
+            var template = TemplateUtility.Compile("Hello @Model.Name!");
             Console.WriteLine(template.Render(new { Name = "world" }));
         }
 
         public static void TemplateWithCustomNamespaces()
         {
-            var template = Template
+            var template = TemplateUtility
                 .WithBaseType<TemplateBase>()
-                .AddNamespace("RazorTemplates.Samples")
+                .AddNamespace("Rhythm.Samples")
                 .Compile(@"There is @Model.Apples @Plural.Form(Model.Apples, new [] { ""apple"", ""apples"" }) in the box.");
 
             Console.WriteLine(template.Render(new { Apples = 1 }));

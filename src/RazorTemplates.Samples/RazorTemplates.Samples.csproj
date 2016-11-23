@@ -49,7 +49,7 @@
   <ItemGroup>
     <ProjectReference Include="..\RazorTemplates.Core\RazorTemplates.Core.csproj">
       <Project>{F4411488-D1A2-4A06-8891-E44C3BDCC4A8}</Project>
-      <Name>RazorTemplates.Core</Name>
+      <Name>Rhythm.Text.Templating</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Dynamic;
+using Rhythm.Text.Templating.Core;
 
-namespace RazorTemplates.Core
+namespace Rhythm.Text.Templating
 {
-    internal class Template<T, TModel> : ITemplate<TModel> where T : TemplateBase
+	internal class TemplateRender<TTemplate, TModel> : ITemplateRender<TModel> where TTemplate : TemplateBase
     {
         private readonly Type _templateType;
-        private readonly Action<T> _initializer;
+        private readonly Action<TTemplate> _initializer;
         private readonly string _sourceCode;
 
-        internal Template(Type templateType, string sourceCode, Action<T> initializer)
+        internal TemplateRender(Type templateType, string sourceCode, Action<TTemplate> initializer)
         {
             _templateType = templateType;
             _sourceCode = sourceCode;
@@ -25,18 +26,27 @@ namespace RazorTemplates.Core
 
         public string Render(TModel model)
         {
-            var template = CreateTemplateInstance();
+			var template = (ITemplateInternal)CreateTemplateInstance();
 
-            if (!ReferenceEquals(null, model)
-                && model.GetType().Name.StartsWith("<>f__AnonymousType"))
-                return template.Render(CreateExpandoObject(model));
 
-            return template.Render(model);
+			if (!ReferenceEquals(null, model) && model.GetType().Name.StartsWith("<>f__AnonymousType"))
+			{
+				template.SetModel(CreateExpandoObject(model));
+			template.Execute();
+				return template.Result;
+			}else
+			{
+				template.SetModel(model);
+
+				template.Execute();
+				return template.Result;
+
+			}
         }
 
-        protected T CreateTemplateInstance()
+        protected TTemplate CreateTemplateInstance()
         {
-            var instance = (T)Activator.CreateInstance(_templateType);
+            var instance = (TTemplate)Activator.CreateInstance(_templateType);
 
             if (_initializer != null)
                 _initializer(instance);

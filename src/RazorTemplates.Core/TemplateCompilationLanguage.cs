@@ -1,4 +1,4 @@
-﻿namespace RazorTemplates.Core
+﻿namespace Rhythm.Text.Templating
 {
     public enum TemplateCompilationLanguage
     {

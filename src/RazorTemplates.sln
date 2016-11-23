@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorTemplates.Core", "RazorTemplates.Core\RazorTemplates.Core.csproj", "{F4411488-D1A2-4A06-8891-E44C3BDCC4A8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rhythm.Text.Templating", "RazorTemplates.Core\Rhythm.Text.Templating.csproj", "{F4411488-D1A2-4A06-8891-E44C3BDCC4A8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{93B59751-9388-451E-9EB9-36812C8276D5}"
 	ProjectSection(SolutionItems) = preProject

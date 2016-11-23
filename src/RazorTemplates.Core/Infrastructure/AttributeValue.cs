@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RazorTemplates.Core.Infrastructure
+namespace Rhythm.Text.Templating.Infrastructure
 {
     /// <summary>
     /// Html attribute value for support RazorEngine 2.0

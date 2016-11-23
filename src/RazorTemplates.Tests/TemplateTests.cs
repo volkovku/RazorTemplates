@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 using System.Dynamic;
 using System.IO;
 using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RazorTemplates.Core;
+using Rhythm.Text;
 
-namespace RazorTemplates.Tests
+namespace Rhythm.Tests
 {
     [TestClass]
     public class TemplateTests
