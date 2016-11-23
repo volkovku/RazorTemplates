@@ -1,7 +1,8 @@
 ﻿using System;
-using RazorTemplates.Core;
+using Rhythm.Text;
+using Rhythm.Text.Config;
 
-namespace RazorTemplates.Samples
+namespace Rhythm.Samples
 {
     class Program
     {
@@ -14,16 +15,16 @@ namespace RazorTemplates.Samples
         }
 
         public static void SimpleTemplate()
-        {
-            var template = Template.Compile("Hello @Model.Name!");
+		{
+            var template = CompiledApi.Compile("Hello @Model.Name!");
             Console.WriteLine(template.Render(new { Name = "world" }));
         }
 
         public static void TemplateWithCustomNamespaces()
         {
-            var template = Template
+            var template = CompiledApi
                 .WithBaseType<TemplateBase>()
-                .AddNamespace("RazorTemplates.Samples")
+                .AddNamespace("Rhythm.Samples")
                 .Compile(@"There is @Model.Apples @Plural.Form(Model.Apples, new [] { ""apple"", ""apples"" }) in the box.");
 
             Console.WriteLine(template.Render(new { Apples = 1 }));

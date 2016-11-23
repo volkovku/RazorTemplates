@@ -1,8 +1,9 @@
 using System;
 using System.Globalization;
 using System.IO;
+using System.Web;
 
-namespace RazorTemplates.Core
+namespace Rhythm.Text
 {
 
 	public class HelperResult 
@@ -24,6 +25,15 @@ namespace RazorTemplates.Core
 			}
 		}
 
+		public override string ToString()
+		{
+			return GetString();
+		}
+
+		//public   IHtmlString ToString()
+		//{
+		//	return GetString();
+		//}
 
 	}
 }

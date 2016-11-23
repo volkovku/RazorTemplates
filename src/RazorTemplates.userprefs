@@ -1,18 +1,30 @@
-﻿<Properties StartupConfiguration="{522203D1-1AAC-4AA1-A796-1ABD8F61F9FA}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="RazorTemplates.Core/TemplateCompiler.cs">
+﻿<Properties StartupConfiguration="{522203D1-1AAC-4AA1-A796-1ABD8F61F9FA}|Default" GitUserInfo="UsingMD">
+  <MonoDevelop.Ide.Workbench ActiveDocument="src Status">
     <Files>
-      <File FileName="RazorTemplates.Core/ITemplate`1.cs" Line="14" Column="40" />
-      <File FileName="RazorTemplates.Core/Template`1.cs" Line="1" Column="1" />
-      <File FileName="RazorTemplates.Core/TemplateBase.cs" Line="14" Column="22" />
-      <File FileName="RazorTemplates.Core/CustomEngineHost.cs" Line="13" Column="18" />
-      <File FileName="RazorTemplates.Core/HelperResult.cs" Line="18" Column="11" />
-      <File FileName="RazorTemplates.Core/TemplateCompiler.cs" Line="185" Column="47" />
+      <File FileName="RazorTemplates.Core/New/Config/ConfigElement.cs" Line="12" Column="40" />
+      <File FileName="RazorTemplates.Core/New/Config/XElementExtension.cs" Line="21" Column="39" />
+      <File FileName="RazorTemplates.Core/New/Core/ITemplateInternal.cs" Line="20" Column="37" />
+      <File FileName="RazorTemplates.Core/New/Core/IContentProvider.cs" Line="10" Column="24" />
+      <File FileName="RazorTemplates.Core/CompiledApi`1.cs" Line="42" Column="1" />
+      <File FileName="RazorTemplates.Core/TemplateCompiler.cs" Line="78" Column="1" />
+      <File FileName="RazorTemplates.Core/New/Core/Generator/XiptonEngineHost.cs" Line="47" Column="47" />
+      <File FileName="RazorTemplates.Core/TemplateBase.cs" Line="22" Column="39" />
+      <File FileName="RazorTemplates.Core/TemplateBase`1.cs" Line="23" Column="23" />
+      <File FileName="RazorTemplates.Core/New/ITemplate.cs" Line="48" Column="19" />
+      <File FileName="RazorTemplates.Core/HelperResult.cs" Line="11" Column="10" />
+      <File FileName="RazorTemplates.Core/CustomEngineHost.cs" Line="29" Column="19" />
+      <File FileName="RazorTemplates.Core/TemplateCompilationResult.cs" Line="1" Column="1" />
+      <File FileName="RazorTemplates.Core/TemplateCompilationLanguage.cs" Line="1" Column="1" />
+      <File FileName="RazorTemplates.Samples/Program.cs" Line="11" Column="18" />
+      <File FileName="RazorTemplates.Core/New/TemplateBase.cs" Line="233" Column="1" />
+      <File FileName="src Status" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/laurel/git/RazorTemplates-lx/src/RazorTemplates.Core/Custom.cs" line="27" column="1" />
+      <Breakpoint file="/Users/laurel/git/RazorTemplates-lx/src/RazorTemplates.Samples/Program.cs" line="20" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

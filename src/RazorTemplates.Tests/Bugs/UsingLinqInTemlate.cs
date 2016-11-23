@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RazorTemplates.Core;
+using Rhythm.Text;
 
-namespace RazorTemplates.Tests.Bugs
+namespace Rhythm.Tests.Bugs
 {
     [TestClass]
     public class UsingLinqInTemlate

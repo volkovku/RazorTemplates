@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RazorTemplates.Core
+namespace Rhythm.Text
 {
     /// <summary>
     /// Represents result of template compilation.

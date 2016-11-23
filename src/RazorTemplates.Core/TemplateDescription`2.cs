@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace RazorTemplates.Core
+namespace Rhythm.Text
 {
     /// <summary>
     /// Represents a description of new Razor template type.
@@ -63,16 +63,16 @@ namespace RazorTemplates.Core
         /// <summary>
         /// Creates template from specified source.
         /// </summary>
-        public ITemplate<dynamic> Compile(string source)
+        public ICompiledApi<dynamic> Compile(string source)
         {
             var compilationResult = InternalCompile(source);
-            return new Template<T, dynamic>(compilationResult.Type, compilationResult.SourceCode, _templateInitializer);
+            return new CompiledApi<T, dynamic>(compilationResult.Type, compilationResult.SourceCode, _templateInitializer);
         }
 
         /// <summary>
         /// Creates template from specified source.
         /// </summary>
-        public ITemplate<TModel> Compile<TModel>(string source)
+        public ICompiledApi<TModel> Compile<TModel>(string source)
         {
             if (string.IsNullOrEmpty(source))
                 throw new ArgumentException(
@@ -92,7 +92,7 @@ namespace RazorTemplates.Core
             }
 
             var compilationResult = InternalCompile<TModel>(source);
-            return new Template<TemplateBase<TModel>, TModel>(compilationResult.Type, compilationResult.SourceCode, initializer);
+            return new CompiledApi<TemplateBase<TModel>, TModel>(compilationResult.Type, compilationResult.SourceCode, initializer);
         }
 
         internal TemplateCompilationResult InternalCompile(string source)

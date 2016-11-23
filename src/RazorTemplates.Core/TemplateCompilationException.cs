@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RazorTemplates.Core
+namespace Rhythm.Text
 {
     /// <summary>
     /// Represents an exception which raises when template contains compilation errors.

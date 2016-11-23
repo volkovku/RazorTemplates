@@ -11,8 +11,9 @@ using System.Threading;
 using System.Web.Razor;
 using Microsoft.CSharp;
 using Microsoft.VisualBasic;
+using Rhythm.Text.Config;
 
-namespace RazorTemplates.Core
+namespace Rhythm.Text
 {
     internal static class TemplateCompiler
     {
@@ -25,7 +26,10 @@ namespace RazorTemplates.Core
             "System.Linq"
         };
 
-        private static volatile bool _runtimeBinderLoaded;
+		static readonly RazorConfig cfg = (RazorConfig)new RazorConfig().Initializer.TryInitializeFromConfig();
+
+
+		private static volatile bool _runtimeBinderLoaded;
         private static int _templateNumber;
 
         public static bool Debug { get; set; }
@@ -166,10 +170,10 @@ namespace RazorTemplates.Core
             switch (Language)
             {
                 case TemplateCompilationLanguage.CSharp:
-                    host = new CustomEngineHost(new CSharpRazorCodeLanguage());
+                    host = new XiptonEngineHost(cfg);
                     break;
                 case TemplateCompilationLanguage.VisualBasic:
-                    host = new CustomEngineHost(new VBRazorCodeLanguage());
+                    host = new XiptonEngineHost(cfg);
                     break;
                 default:
                     throw new NotSupportedException("Language not supported.");

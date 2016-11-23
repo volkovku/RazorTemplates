@@ -1,9 +1,9 @@
-﻿namespace RazorTemplates.Core
+﻿namespace Rhythm.Text
 {
     /// <summary>
     /// Describes an interface of template.
     /// </summary>
-    public interface ITemplate<in TModel>
+    public interface ICompiledApi<in TModel>
     {
         /// <summary>
         /// Returns generated source code for this template.
