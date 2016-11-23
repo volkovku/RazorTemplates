@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F4411488-D1A2-4A06-8891-E44C3BDCC4A8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RazorTemplates.Core</RootNamespace>
+    <AssemblyName>RazorTemplates.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\RazorTemplates.Core.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\RazorTemplates.Core.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>RazorTemplates.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Infrastructure\AttributeValue.cs" />
+    <Compile Include="Infrastructure\PositionTagged.cs" />
+    <Compile Include="ICompiledApi`1.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TemplateBase`1.cs" />
+    <Compile Include="TemplateCompilationLanguage.cs" />
+    <Compile Include="TemplateCompilationResult.cs" />
+    <Compile Include="CompiledApi`1.cs" />
+    <Compile Include="TemplateDescription`2.cs" />
+    <Compile Include="TemplateCompiler.cs" />
+    <Compile Include="CompiledApi.cs" />
+    <Compile Include="TemplateBase.cs" />
+    <Compile Include="TemplateCompilationException.cs" />
+    <Compile Include="CustomEngineHost.cs" />
+    <Compile Include="HelperResult.cs" />
+    <Compile Include="New\ILiteralString.cs" />
+    <Compile Include="New\ITemplate.cs" />
+    <Compile Include="New\ITemplate`1.cs" />
+    <Compile Include="New\LiteralString.cs" />
+    <Compile Include="New\RazorContext.cs" />
+    <Compile Include="New\TemplateBase.cs" />
+    <Compile Include="New\TemplateBase`1.cs" />
+    <Compile Include="New\XElementExtension.cs" />
+    <Compile Include="New\Config\ConfigElement.cs" />
+    <Compile Include="New\Config\IRazorConfigInitializer.cs" />
+    <Compile Include="New\Config\RazorConfig.cs" />
+    <Compile Include="New\Config\RootOperatorElement.cs" />
+    <Compile Include="New\Config\TemplateConfigurationException.cs" />
+    <Compile Include="New\Config\TemplatesElement.cs" />
+    <Compile Include="New\Config\XElementExtension.cs" />
+    <Compile Include="New\Config\XmlConfigurationSection.cs" />
+    <Compile Include="New\Core\ContentManager.cs" />
+    <Compile Include="New\Core\ContentModifiedArgs.cs" />
+    <Compile Include="New\Core\DynamicData.cs" />
+    <Compile Include="New\Core\HelperResult.cs" />
+    <Compile Include="New\Core\IContentProvider.cs" />
+    <Compile Include="New\Core\ITemplateInternal.cs" />
+    <Compile Include="New\Core\TemplateBindingException.cs" />
+    <Compile Include="New\Core\TemplateCompileException.cs" />
+    <Compile Include="New\Core\TemplateException.cs" />
+    <Compile Include="New\Core\TemplateFactory.cs" />
+    <Compile Include="New\Core\TemplateParseException.cs" />
+    <Compile Include="New\Core\TemplateTreeException.cs" />
+    <Compile Include="New\Core\VirtualPathBuilder.cs" />
+    <Compile Include="New\Core\ContentProvider\CompositeContentProvider.cs" />
+    <Compile Include="New\Core\ContentProvider\EmbeddedResourceContentProvider.cs" />
+    <Compile Include="New\Core\ContentProvider\FileContentProvider.cs" />
+    <Compile Include="New\Core\ContentProvider\MemoryContentProvider.cs" />
+    <Compile Include="New\Core\Generator\IXiptonCodeLanguage.cs" />
+    <Compile Include="New\Core\Generator\SetModelCodeGenerator.cs" />
+    <Compile Include="New\Core\Generator\XiptonEngineHost.cs" />
+    <Compile Include="New\Core\Generator\CSharp\XiptonCSharpCodeLanguage.cs" />
+    <Compile Include="New\Core\Generator\CSharp\XiptonCSharpCodeParser.cs" />
+    <Compile Include="New\Core\Generator\VB\XiptonVBCodeLanguage.cs" />
+    <Compile Include="New\Core\Generator\VB\XiptonVBCodeParser.cs" />
+    <Compile Include="New\Extension\AppDomainExtension.cs" />
+    <Compile Include="New\Extension\AssemblyExtension.cs" />
+    <Compile Include="New\Extension\ObjectExtension.cs" />
+    <Compile Include="New\Extension\StringExtension.cs" />
+    <Compile Include="New\Extension\TypeExtension.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="RazorTemplates.Core.nuspec" />
+    <None Include="RazorTemplates.snk" />
+    <None Include="New\Config\xipton.razor.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="AfterBuild" Condition=" '$(Configuration)' == 'Release'">
+  <!--  <Exec Command="nuget pack RazorTemplates.Core.csproj -Prop Configuration=Release">
+    </Exec>-->
+  </Target>
+</Project>

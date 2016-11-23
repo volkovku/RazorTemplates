@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>RazorTemplates</id>
+    <version>1.2.1</version>
+    <title>RazorTemplates</title>
+    <authors>volkovku</authors>
+    <owners>volkovku</owners>
+    <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
+    <projectUrl>https://github.com/volkovku/RazorTemplates</projectUrl>
+    <iconUrl>https://www.nuget.org/</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Open source templating engine based on Microsoft's Razor parsing engine. Thread safe. Allows run Razor templates outside ASP.Net MVC Projects.</description>
+    <releaseNotes>Bugfix: loading of additional assemblies</releaseNotes>
+    <copyright>Copyright © RazorTemplates Project 2012</copyright>
+    <tags>razor razorengine templating razortemplates</tags>
+  </metadata>
+</package>
